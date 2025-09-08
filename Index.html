@@ -11,6 +11,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #f3f4f6;
             color: #1f2937;
+            transition: background-color 0.3s, color 0.3s;
         }
         .message-box {
             display: none;
@@ -31,14 +32,65 @@
             box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
             background-color: #dbeafe;
         }
+        /* Dark Mode styles */
+        body.dark {
+            background-color: #1f2937;
+            color: #f3f4f6;
+        }
+        body.dark .bg-white {
+            background-color: #374151;
+        }
+        body.dark .text-gray-800 {
+            color: #f3f4f6;
+        }
+        body.dark .text-gray-600 {
+            color: #d1d5db;
+        }
+        body.dark .text-gray-700 {
+            color: #e5e7eb;
+        }
+        body.dark .bg-gray-200 {
+            background-color: #4b5563;
+        }
+        body.dark .text-gray-500 {
+            color: #d1d5db;
+        }
+        body.dark .bg-gray-100 {
+            background-color: #4b5563;
+        }
+        body.dark .bg-green-100 {
+            background-color: #34d399;
+        }
+        body.dark .border-green-400 {
+            border-color: #10b981;
+        }
+        body.dark .text-green-700 {
+            color: #065f46;
+        }
+        body.dark .border-gray-300 {
+            border-color: #4b5563;
+        }
     </style>
 </head>
 <body class="p-6 md:p-12">
 
     <div class="max-w-4xl mx-auto space-y-8">
-        <header class="text-center mb-10">
+        <header class="text-center mb-10 relative">
             <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-2">Event Handling Demonstration</h1>
             <p class="text-lg text-gray-600">Interact with the elements below to see how JavaScript responds to user events.</p>
+            <!-- Light/Dark Mode Toggle -->
+            <div class="absolute top-0 right-0 p-4">
+                <button id="themeToggleBtn" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+                    <!-- Sun SVG for light mode -->
+                    <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <!-- Moon SVG for dark mode -->
+                    <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+            </div>
         </header>
 
         <!-- Click Event Section -->
@@ -158,7 +210,38 @@
                 hiddenContent.style.display = 'none';
             }
         });
+
+        // Part 5: Light/Dark Mode Toggle
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const body = document.body;
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+
+        // Check for saved theme in localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            // Toggle the 'dark' class on the body
+            body.classList.toggle('dark');
+
+            // Toggle the SVG icons for the button
+            sunIcon.classList.toggle('hidden');
+            moonIcon.classList.toggle('hidden');
+
+            // Save the user's preference to localStorage
+            if (body.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
     </script>
 
 </body>
 </html>
+
