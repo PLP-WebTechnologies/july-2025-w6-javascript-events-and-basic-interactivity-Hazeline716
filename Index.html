@@ -3,126 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Handling Demo</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Interactive Webpage</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="p-6 md:p-12">
-
-    <div class="max-w-4xl mx-auto space-y-8">
-        <header class="text-center mb-10 relative">
-            <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-2">Event Handling Demonstration</h1>
-            <p class="text-lg text-gray-600">Interact with the elements below to see how JavaScript responds to user events.</p>
-            <!-- Light/Dark Mode Toggle -->
-            <div class="absolute top-0 right-0 p-4">
-                <button id="themeToggleBtn" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors duration-300">
-                    <!-- Sun SVG for light mode -->
-                    <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                    <!-- Moon SVG for dark mode -->
-                    <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                    </svg>
-                </button>
+<body class="bg-gray-100 dark:bg-gray-800 transition-colors duration-500">
+    <header class="bg-white dark:bg-gray-700 shadow-md py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Interactive Features</h1>
+            <button id="theme-toggle" class="px-4 py-2 rounded-full text-sm font-semibold bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-100 transition-colors duration-500 shadow">Toggle Theme</button>
+        </div>
+    </header>
+    <main class="container mx-auto px-6 py-12 space-y-12">
+        <section class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Simple Counter</h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Click the button to increase the counter.</p>
+            <div class="flex items-center space-x-4">
+                <button id="counter-btn" class="px-6 py-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">Click Me</button>
+                <span id="counter-value" class="text-3xl font-bold text-gray-800 dark:text-gray-100">0</span>
             </div>
-        </header>
-
-        <!-- Form Validation Section -->
-        <section class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-2xl font-semibold mb-4">Form Validation</h2>
-            <p class="text-gray-700 mb-4">
-                Fill out the form below. Validation will happen on submit and as you type.
-            </p>
-            <form id="myForm" class="space-y-4">
+        </section>
+        <section class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Contact Form</h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">Please fill out this form to get in touch. All fields are required.</p>
+            <form id="contact-form" class="space-y-6">
                 <div>
-                    <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition duration-200" autocomplete="name" required>
-                    <div id="fullNameError" class="form-feedback text-red-500"></div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Full Name</label>
+                    <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white p-2">
+                    <p class="form-feedback text-sm text-red-500 hidden" id="name-feedback"></p>
                 </div>
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                    <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition duration-200" autocomplete="email" required>
-                    <div id="emailError" class="form-feedback text-red-500"></div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Email Address</label>
+                    <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white p-2">
+                    <p class="form-feedback text-sm text-red-500 hidden" id="email-feedback"></p>
                 </div>
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" id="password" name="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition duration-200" required>
-                    <div id="passwordError" class="form-feedback text-red-500"></div>
-                    <p class="mt-1 text-xs text-gray-500">Password must be at least 8 characters long.</p>
+                    <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Password</label>
+                    <input type="password" id="password" name="password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white p-2">
+                    <p class="form-feedback text-sm text-red-500 hidden" id="password-feedback"></p>
                 </div>
-                <div id="formSuccess" class="hidden form-feedback text-green-600 font-semibold text-center py-2 px-4 rounded-md bg-green-100">
+                <div id="form-success-message" class="bg-green-100 text-green-700 p-4 rounded-md hidden">
                     Form submitted successfully!
                 </div>
-                <button type="submit" class="w-full bg-blue-600 text-white font-medium py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
-                    Submit
-                </button>
+                <button type="submit" class="px-6 py-2 rounded-full bg-green-500 hover:bg-green-600 text-white font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">Submit</button>
             </form>
         </section>
-
-        <!-- Click Event Section -->
-        <section class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-2xl font-semibold mb-4">Click Event</h2>
-            <p class="text-gray-700 mb-4">Click the button below to show a message.</p>
-            <button id="clickMeBtn" class="bg-blue-600 text-white font-medium py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
-                Click Me!
-            </button>
-        </section>
-
-        <!-- Mouse Events Section -->
-        <section class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-2xl font-semibold mb-4">Mouse Events (Hover)</h2>
-            <p class="text-gray-700 mb-4">Hover over the box to change its color.</p>
-            <div id="hoverBox" class="w-full h-32 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 font-medium transition-colors duration-300">
-                Hover over me!
-            </div>
-        </section>
-
-        <!-- Keyboard Event Section -->
-        <section class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-2xl font-semibold mb-4">Keyboard Event</h2>
-            <p class="text-gray-700 mb-4">Type something in the text box below and check the browser console (F12).</p>
-            <input id="keyInput" type="text" placeholder="Start typing here..." class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </section>
-
-        <!-- Toggle and Hide/Show Content Section -->
-        <section class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-2xl font-semibold mb-4">Toggle Classes & Content</h2>
-            <p class="text-gray-700 mb-4">
-                Click the button to toggle the border on the box.
-            </p>
-            <div id="toggleBox" class="w-full h-32 p-4 rounded-lg bg-gray-100 flex items-center justify-center text-center transition-all duration-300 border-2 border-transparent">
-                <p>This box can be toggled.</p>
-            </div>
-            <button id="toggleBtn" class="mt-4 bg-blue-600 text-white font-medium py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
-                Toggle Class
-            </button>
-
-            <hr class="my-6">
-
-            <p class="text-gray-700 mb-4">
-                Click the button below to hide or show the message.
-            </p>
-            <div id="hiddenContent" class="bg-green-100 border border-green-400 text-green-700 p-4 rounded-lg transition-opacity duration-500 opacity-100">
-                This is a hidden message!
-            </div>
-            <button id="toggleContentBtn" class="mt-4 bg-blue-600 text-white font-medium py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
-                Hide/Show Content
-            </button>
-        </section>
-
-    </div>
-
-    <!-- Custom message box -->
-    <div id="messageBox" class="message-box">
-        <p class="text-lg font-semibold mb-2">Button Clicked!</p>
-        <p>You have successfully handled the click event.</p>
-        <button id="closeMessageBox" class="mt-4 bg-blue-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
-            Close
-        </button>
-    </div>
-
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
+
 
 
