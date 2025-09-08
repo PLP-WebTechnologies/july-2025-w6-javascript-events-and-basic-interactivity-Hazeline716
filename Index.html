@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .message-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 2rem;
+            background-color: #1f2937;
+            color: #ffffff;
+            border-radius: 0.5rem;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .active-box {
+            border: 2px solid #2563eb;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+            background-color: #dbeafe;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <div class="max-w-4xl mx-auto space-y-8">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-2">Event Handling Demonstration</h1>
+            <p class="text-lg text-gray-600">Interact with the elements below to see how JavaScript responds to user events.</p>
+        </header>
+
+        <!-- Click Event Section -->
+        <section class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Click Event</h2>
+            <p class="text-gray-700 mb-4">Click the button below to show a message.</p>
+            <button id="clickMeBtn" class="bg-blue-600 text-white font-medium py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+                Click Me!
+            </button>
+        </section>
+
+        <!-- Mouse Events Section -->
+        <section class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Mouse Events (Hover)</h2>
+            <p class="text-gray-700 mb-4">Hover over the box to change its color.</p>
+            <div id="hoverBox" class="w-full h-32 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 font-medium transition-colors duration-300">
+                Hover over me!
+            </div>
+        </section>
+
+        <!-- Keyboard Event Section -->
+        <section class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Keyboard Event</h2>
+            <p class="text-gray-700 mb-4">Type something in the text box below and check the browser console (F12).</p>
+            <input id="keyInput" type="text" placeholder="Start typing here..." class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+        </section>
+
+        <!-- Toggle and Hide/Show Content Section -->
+        <section class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Toggle Classes & Content</h2>
+            <p class="text-gray-700 mb-4">
+                Click the button to toggle the border on the box.
+            </p>
+            <div id="toggleBox" class="w-full h-32 p-4 rounded-lg bg-gray-100 flex items-center justify-center text-center transition-all duration-300 border-2 border-transparent">
+                <p>This box can be toggled.</p>
+            </div>
+            <button id="toggleBtn" class="mt-4 bg-blue-600 text-white font-medium py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+                Toggle Class
+            </button>
+
+            <hr class="my-6">
+
+            <p class="text-gray-700 mb-4">
+                Click the button below to hide or show the message.
+            </p>
+            <div id="hiddenContent" class="bg-green-100 border border-green-400 text-green-700 p-4 rounded-lg transition-opacity duration-500 opacity-100">
+                This is a hidden message!
+            </div>
+            <button id="toggleContentBtn" class="mt-4 bg-blue-600 text-white font-medium py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+                Hide/Show Content
+            </button>
+        </section>
+
+    </div>
+
+    <!-- Custom message box -->
+    <div id="messageBox" class="message-box">
+        <p class="text-lg font-semibold mb-2">Button Clicked!</p>
+        <p>You have successfully handled the click event.</p>
+        <button id="closeMessageBox" class="mt-4 bg-blue-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+            Close
+        </button>
+    </div>
+
+    <script>
+        // Part 1: Click Event Listener
+        const clickMeBtn = document.getElementById('clickMeBtn');
+        const messageBox = document.getElementById('messageBox');
+        const closeMessageBoxBtn = document.getElementById('closeMessageBox');
+
+        clickMeBtn.addEventListener('click', () => {
+            messageBox.style.display = 'block';
+        });
+
+        closeMessageBoxBtn.addEventListener('click', () => {
+            messageBox.style.display = 'none';
+        });
+
+        // Part 2: Mouse Events
+        const hoverBox = document.getElementById('hoverBox');
+
+        hoverBox.addEventListener('mouseover', () => {
+            hoverBox.style.backgroundColor = '#93c5fd'; // A lighter blue color
+        });
+
+        hoverBox.addEventListener('mouseout', () => {
+            hoverBox.style.backgroundColor = '#e5e7eb'; // The original gray color
+        });
+
+        // Part 3: Keyboard Event
+        const keyInput = document.getElementById('keyInput');
+
+        keyInput.addEventListener('keydown', (event) => {
+            console.log(`Key pressed: ${event.key}`);
+            // You can add more complex logic here, for example, checking for a specific key
+            if (event.key === 'Enter') {
+                console.log('You pressed the Enter key!');
+            }
+        });
+
+        // Part 4: Toggle Class and Hide/Show Content
+        const toggleBtn = document.getElementById('toggleBtn');
+        const toggleBox = document.getElementById('toggleBox');
+
+        toggleBtn.addEventListener('click', () => {
+            toggleBox.classList.toggle('active-box');
+        });
+
+        const toggleContentBtn = document.getElementById('toggleContentBtn');
+        const hiddenContent = document.getElementById('hiddenContent');
+
+        toggleContentBtn.addEventListener('click', () => {
+            // This is a simple way to toggle display
+            if (hiddenContent.style.display === 'none') {
+                hiddenContent.style.display = 'block';
+            } else {
+                hiddenContent.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
